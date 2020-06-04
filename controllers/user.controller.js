@@ -24,7 +24,7 @@ exports.put = (req, res, next) => {
 }
 
 exports.delete = (req, res, next) => {
-    deleteUtilizador(req.params.id_user).then(result=>{
+    deleteuser(req.params.id_user).then(result=>{
         res.json(result);
     }).catch(err=>res.json(err));
 }
@@ -33,10 +33,10 @@ function create(username, email, user_password){
     username=Database.escape(username);
     email=Database.escape(email);
     user_password=bcrypt.hashSync(Database.escape(user_password),SALT_ROUNDS);
-    const sql = "INSERT INTO utilizador (username, email, user_password, foto) VALUES (?,?,?,?);";
-    return existsWithEmail(email).then(exists=>{ //verificar se existe utilizador para esse email
+    const sql = "INSERT INTO user (username, email, user_password, foto) VALUES (?,?,?,?);";
+    return existsWithEmail(email).then(exists=>{ //verificar se existe user para esse email
         if(exists===false){//se o user com o email nao existir criar conta
-            return Database.query(sql,[username, email, user_password, false, "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"]);
+            return Database.query(sql,[username, email, user_password,"https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"]);
         }else{ // nao cria conta
             return "Conta já Existente";
         }
@@ -44,7 +44,7 @@ function create(username, email, user_password){
 }   
 
 function existsWithEmail(email){
-    const sql = "SELECT * FROM utilizador WHERE email = ?";
+    const sql = "SELECT * FROM user WHERE email = ?";
     return Database.query(sql, [email]).then(res=>{
         return res.length>0 || res.length===undefined;
     });
@@ -54,11 +54,11 @@ function login(email, user_password){
     email=Database.escape(email);
     user_password=Database.escape(user_password);
 
-    const sql = "SELECT * FROM utilizador WHERE email = ?";
+    const sql = "SELECT * FROM user WHERE email = ?";
     return Database.query(sql, [email]).then(res=>{
         const user=res[0];
         if(user){
-            if(bcrypt.compareSync(user_password, user.user_password)){//comparar pass encryptada com a escrita pelo utilizador
+            if(bcrypt.compareSync(user_password, user.user_password)){//comparar pass encryptada com a escrita pelo user
                 return user;//true if credentials match
             }else{
                 return undefined;//false if credentials no match
@@ -77,7 +77,7 @@ function update(id_user, username, email, foto){
     foto=Database.escape(foto);
     
     
-    const sql = "UPDATE utilizador SET username = ?, email = ?, foto = ? WHERE id_user = ?";
+    const sql = "UPDATE user SET username = ?, email = ?, foto = ? WHERE id_user = ?";
     return Database.query(sql, [username, email, foto, id_user]).then(res=>{
         if(res.affectedRows > 0){
             return "Mudanças Salvas"
@@ -86,21 +86,21 @@ function update(id_user, username, email, foto){
     })
 }
 
-function deleteUtilizador(id_user){
+function deleteuser(id_user){
     
 
-    const sql = "DELETE FROM utilizador WHERE id_user = ?";
+    const sql = "DELETE FROM user WHERE id_user = ?";
     return Database.query(sql, [id_user]).then(res=>{
         if (res.affectedRows > 0){
-            return "Utilizador Removido"
+            return "user Removido"
         }
-        else{return "Utilizador Não Existente"}
+        else{return "user Não Existente"}
     })
 }
 
 
-function getAllUtilizadores(){
-    const sql = "SELECT * FROM utilizador";
+function getAllUser(){
+    const sql = "SELECT * FROM user";
     return Database.query(sql);
 }
 
