@@ -65,7 +65,7 @@ function getAllUserConferences(id_user) { //receber todas as confs criadas pelo 
 }
 
 function getAllUserInvites(id_user) { //receber todas as confs que o utilizador foi convidado, para dar render
-    const sql = `SELECT conference.id_conference, conference.data_time_start, conference.id_host, 
+    const sql = `SELECT conference.id_conference, conference.date_time_start, conference.id_host, 
     conference.date_time, conference.name, conference.description
     FROM conference
     INNER JOIN guest
