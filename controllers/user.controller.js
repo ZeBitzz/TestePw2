@@ -5,38 +5,38 @@ const SALT_ROUNDS = 10;
 
 
 exports.get = (req, res, next) => {
-    login(req.body.email, req.body.password).then(result=>{
+    login(req.body.email, req.body.user_password).then(result=>{
         res.json(result);
     }).catch(err=>res.json(err));
 }
 
 exports.post = (req, res, next) => {
     console.log(req.body);
-    create(req.body.user_name, req.body.email, req.body.password).then(result=>{
+    create(req.body.username, req.body.email, req.body.user_password).then(result=>{
         res.json(result);
     }).catch(err=>res.json(err));
 }
 
 exports.put = (req, res, next) => {
-    update(req.params.id_utilizador, req.body.user_name, req.body.email, req.body.foto, req.body.numero_tel).then(result=>{
+    update(req.params.id_user, req.body.username, req.body.email, req.body.foto, req.body.numero_tel).then(result=>{
         res.json(result);
     }).catch(err=>res.json(err));
 }
 
 exports.delete = (req, res, next) => {
-    deleteUtilizador(req.params.id_utilizador).then(result=>{
+    deleteUtilizador(req.params.id_user).then(result=>{
         res.json(result);
     }).catch(err=>res.json(err));
 }
 
-function create(user_name, email, password){
-    user_name=Database.escape(user_name);
+function create(username, email, user_password){
+    username=Database.escape(username);
     email=Database.escape(email);
-    password=bcrypt.hashSync(Database.escape(password),SALT_ROUNDS);
-    const sql = "INSERT INTO utilizador (user_name, email, password, foto) VALUES (?,?,?,?);";
+    user_password=bcrypt.hashSync(Database.escape(user_password),SALT_ROUNDS);
+    const sql = "INSERT INTO utilizador (username, email, user_password, foto) VALUES (?,?,?,?);";
     return existsWithEmail(email).then(exists=>{ //verificar se existe utilizador para esse email
         if(exists===false){//se o user com o email nao existir criar conta
-            return Database.query(sql,[user_name, email, password, false, "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"]);
+            return Database.query(sql,[username, email, user_password, false, "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"]);
         }else{ // nao cria conta
             return "Conta já Existente";
         }
@@ -50,15 +50,15 @@ function existsWithEmail(email){
     });
 }
 
-function login(email, password){
+function login(email, user_password){
     email=Database.escape(email);
-    password=Database.escape(password);
+    user_password=Database.escape(user_password);
 
     const sql = "SELECT * FROM utilizador WHERE email = ?";
     return Database.query(sql, [email]).then(res=>{
         const user=res[0];
         if(user){
-            if(bcrypt.compareSync(password, user.password)){//comparar pass encryptada com a escrita pelo utilizador
+            if(bcrypt.compareSync(user_password, user.user_password)){//comparar pass encryptada com a escrita pelo utilizador
                 return user;//true if credentials match
             }else{
                 return undefined;//false if credentials no match
@@ -70,17 +70,15 @@ function login(email, password){
     });
 }
 
-function update(id_utilizador, user_name, email, foto, numero_tel){
+function update(id_user, username, email, foto){
     
-    user_name=Database.escape(user_name);
+    username=Database.escape(username);
     email=Database.escape(email);
     foto=Database.escape(foto);
-    numero_tel=Database.escape(numero_tel);
     
-    if (numero_tel == "NULL") numero_tel = undefined
-
-    const sql = "UPDATE utilizador SET user_name = ?, email = ?, foto = ?, numero_tel = ? WHERE id_utilizador = ?";
-    return Database.query(sql, [user_name, email, foto, numero_tel, id_utilizador]).then(res=>{
+    
+    const sql = "UPDATE utilizador SET username = ?, email = ?, foto = ? WHERE id_user = ?";
+    return Database.query(sql, [username, email, foto, id_user]).then(res=>{
         if(res.affectedRows > 0){
             return "Mudanças Salvas"
         }
@@ -88,11 +86,11 @@ function update(id_utilizador, user_name, email, foto, numero_tel){
     })
 }
 
-function deleteUtilizador(id_utilizador){
+function deleteUtilizador(id_user){
     
 
-    const sql = "DELETE FROM utilizador WHERE id_utilizador = ?";
-    return Database.query(sql, [id_utilizador]).then(res=>{
+    const sql = "DELETE FROM utilizador WHERE id_user = ?";
+    return Database.query(sql, [id_user]).then(res=>{
         if (res.affectedRows > 0){
             return "Utilizador Removido"
         }
@@ -107,5 +105,5 @@ function getAllUtilizadores(){
 }
 
 
-//email, username, password, adress, postal-code, locality ---------------- Restaurante
-//email, username, password ---------------------- Cliente
+//email, username, user_password, adress, postal-code, locality ---------------- Restaurante
+//email, username, user_password ---------------------- Cliente
