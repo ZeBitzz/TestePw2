@@ -33,7 +33,7 @@ function create(user_name, email, password){
     user_name=Database.escape(user_name);
     email=Database.escape(email);
     password=bcrypt.hashSync(Database.escape(password),SALT_ROUNDS);
-    const sql = "INSERT INTO utilizador (user_name, email, password, administrador, foto) VALUES (?,?,?,?,?);";
+    const sql = "INSERT INTO utilizador (user_name, email, password, foto) VALUES (?,?,?,?);";
     return existsWithEmail(email).then(exists=>{ //verificar se existe utilizador para esse email
         if(exists===false){//se o user com o email nao existir criar conta
             return Database.query(sql,[user_name, email, password, false, "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"]);
