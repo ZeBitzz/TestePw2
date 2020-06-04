@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LandingProject</title>
 </head>
+
 <body>
     <div class="navbar">
         <div class="navbar-items">
@@ -31,6 +33,10 @@
                     <p>22:30h</p>
                     <p>Conferências sobre praias</p>
                     <p>Host:Nadador Salvador Carlos</p>
+                    <input type="text" id="fname" name="fname" placeholder="Convide pessoas por email">
+                    <input type="submit" value="Convidar">
+                    <input type="text" id="fname" name="fname" placeholder="Remova pessoas por email">
+                    <input type="submit" value="Remover">
                     <p>Lista de Convidados:</p>
                 </div>
             </div>
@@ -42,7 +48,11 @@
                     <h4><b>Manicomios Rurais</b></h4>
                     <p>4:30h</p>
                     <p>Conferências sobre maluquices</p>
-                    <p>Host:Angélico</p>                  
+                    <p>Host:Angélico</p>
+                    <input type="text" id="fname" name="fname" placeholder="Convide pessoas por email">
+                    <input type="submit" value="Convidar">
+                    <input type="text" id="fname" name="fname" placeholder="Remova pessoas por email">
+                    <input type="submit" value="Remover">
                     <p>Lista de Convidados:</p>
                 </div>
             </div>
@@ -55,10 +65,43 @@
                         <p>15:30h</p>
                         <p>Conferências sobre animais</p>
                         <p>Host:Jorge</p>
+                        <input type="text" id="fname" name="fname" placeholder="Convide pessoas por email">
+                        <input type="submit" value="Convidar">
+                        <input type="text" id="fname" name="fname" placeholder="Remova pessoas por email">
+                        <input type="submit" value="Remover">
                         <p>Lista de Convidados:</p>
                     </div>
                 </div>
                 </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <h1>Criar conferência</h1>
+
+        <br>
+        <br>
+        <form method="post" action="/" id="form" class="validate">
+            <div class="form-field">
+              <label for="full-name">Full Name</label>
+              <input type="text" name="full-name" id="full-name" placeholder="Nome" required />
+            </div>
+            <div class="form-field">
+                <label for="password-input">Hora da reunião</label>
+                <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+              </div>
+            <div class="form-field">
+              <label for="email-input">Descrição</label>
+              <input type="description" name="description-input" id="description-input" placeholder="" required />
+            </div>
+            <div class="form-field">
+              <label for=""></label>
+              <input type="submit" value="Submeter" />
+            </div>
+
+          </form>
 </body>
 
 </html>
