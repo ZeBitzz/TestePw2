@@ -1,0 +1,8 @@
+{
+    "host": "remotemysql.com",
+    "user": "YIXWvKE60F",
+    "password": "mK8GbgURs0",
+    "database": "YIXWvKE60F",
+    "port": "3306",
+    "multipleStatements": true
+}

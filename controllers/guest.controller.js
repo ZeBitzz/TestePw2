@@ -2,7 +2,7 @@ const Database = require("../database/database");
 
 
 exports.post = (req, res, next) => {
-    createGuest(req.params.id_conference, req.body.email).then(result=>{
+    createGuest(req.params.id_conference, req.params.id_guest).then(result=>{
         res.json(result);
     }).catch(err=>res.json(err));
 }
@@ -13,10 +13,8 @@ exports.delete = (req, res, next) => {
     }).catch(err=>res.json(err));
 }
 
-function createGuest(id_conference, email){ //Adicionar convidados a uma determinada conferencia
-    email = Database.escape(email);
-    id_guest = getUserIdByEmail(email)
-
+function createGuest(id_conference, id_guest){ //Adicionar convidados a uma determinada conferencia
+  
     const sql = `INSERT INTO guest (id_conference, id_guest) VALUES (?,?);`
     return Database.query(sql, [id_conference, id_guest]).then(suc=>{
         if (suc !== undefined){
@@ -26,12 +24,6 @@ function createGuest(id_conference, email){ //Adicionar convidados a uma determi
     });
 }
 
-function getUserIdByEmail(email){
-    const sql = `Select id_user FROM user WHERE email = ?`//Descobrir id do convidado a partir do email
-    return Database.query(sql, [email]).then(suc=>{
-        return suc
-    }) 
-}
 
 function deleteGuest(id_conference, id_guest){
 

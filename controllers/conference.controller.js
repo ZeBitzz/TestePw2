@@ -27,7 +27,7 @@ exports.getAllUserInvites = (req, res, next) => {
 
 //DELETE
 exports.delete = (req, res, next) => {
-    deleteReserva(req.params.id_conference)
+    deleteConference(req.params.id_conference)
         .then(deleteLog => {
             res.json(deleteLog)
         })
@@ -50,7 +50,7 @@ function create(date_time_start, id_host, date_time, name, description) {
 
 
 
-function deleteReserva(id_conference) {
+function deleteConference(id_conference) {
     const sql = "DELETE FROM conference WHERE id_conference = ?;";
 
     return Database.query(sql, [id_conference]);
@@ -67,9 +67,9 @@ function getAllUserConferences(id_user) { //receber todas as confs criadas pelo 
 function getAllUserInvites(id_user) { //receber todas as confs que o utilizador foi convidado, para dar render
     const sql = `SELECT conference.id_conference, conference.date_time_start, conference.id_host, 
     conference.date_time, conference.name, conference.description
-    FROM conference
-    INNER JOIN guest
-    ON conference.id_conference = guest.id_conference
+    FROM guest
+    INNER JOIN conference
+    ON guest.id_conference = conference.id_conference
     WHERE guest.id_guest = ?`;
     return Database.query(sql, [id_user]);
 }
