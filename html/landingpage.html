@@ -65,6 +65,28 @@
         <br>
 
         <h1>Criar conferência</h1>
+
+        <br>
+        <br>
+        <form method="post" action="/" id="form" class="validate">
+            <div class="form-field">
+              <label for="full-name">Full Name</label>
+              <input type="text" name="full-name" id="full-name" placeholder="Nome" required />
+            </div>
+            <div class="form-field">
+                <label for="password-input">Hora da reunião</label>
+                <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+              </div>
+            <div class="form-field">
+              <label for="email-input">Descrição</label>
+              <input type="description" name="description-input" id="description-input" placeholder="" required />
+            </div>
+            <div class="form-field">
+              <label for=""></label>
+              <input type="submit" value="Submeter" />
+            </div>
+
+          </form>
 </body>
 
 </html>
@@ -170,4 +192,34 @@
     margin-bottom: 20px;
   }
 }
+
+/* caixa de criação de conferencias */
+
+
+#form {
+  max-width: 700px;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.form-field {
+  display: flex;
+  margin: 0 0 1rem 0;
+}
+label, input {
+  width: 70%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+label {
+  text-align: right;
+  width: 30%;
+}
+input {
+  border: 2px solid #aaa;
+  border-radius: 2px;
+}
+
 </style>
