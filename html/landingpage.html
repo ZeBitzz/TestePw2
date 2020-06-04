@@ -1,105 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LandingProject</title>
 </head>
+
 <body>
     <div class="navbar">
         <div class="navbar-items">
-          <h2>CONFCONF</h2>
-          <div class="streamnav">
-            <ul class="streamers">
-              <li class="streamer" id="streamer1"><a href="/html/login.html">LOGIN</a></li>
-              <li class="streamer" id="streamer2"><a href="/html/register.html">REGISTE-SE</a></li>
-            </ul>
-          </div>
+            <h2>CONFCONF</h2>
+            <div class="streamnav">
+                <ul class="streamers">
+                    <li class="streamer" id="streamer1"><a href="/html/login.html">LOGIN</a></li>
+                    <li class="streamer" id="streamer2"><a href="/html/register.html">REGISTE-SE</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-<br>
-<br>
-<br>
-<br>
-      <h1>Gerir as suas confências</h1>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h1>Gerir as suas conferências</h1>
+    <br>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img src="/assets/img_avatar3.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Praias Poluidas</b></h4>
+                    <p>22:30h</p>
+                    <p>Conferências sobre praias</p>
+                    <p>Host:Nadador Salvador Carlos</p>
+                    <input type="text" id="fname" name="fname" placeholder="Convide pessoas por email">
+                    <input type="submit" value="Convidar">
+                    <input type="text" id="fname" name="fname" placeholder="Remova pessoas por email">
+                    <input type="submit" value="Remover">
+                    <p>Lista de Convidados:</p>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+                <img src="/assets/img_avatar3.png" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Manicomios Rurais</b></h4>
+                    <p>4:30h</p>
+                    <p>Conferências sobre maluquices</p>
+                    <p>Host:Angélico</p>
+                    <input type="text" id="fname" name="fname" placeholder="Convide pessoas por email">
+                    <input type="submit" value="Convidar">
+                    <input type="text" id="fname" name="fname" placeholder="Remova pessoas por email">
+                    <input type="submit" value="Remover">
+                    <p>Lista de Convidados:</p>
+                </div>
+            </div>
+            </div>
+            <div class="column">
+                <div class="card">
+                    <img src="/assets/img_avatar3.png" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>Trafico animal</b></h4>
+                        <p>15:30h</p>
+                        <p>Conferências sobre animais</p>
+                        <p>Host:Jorge</p>
+                        <input type="text" id="fname" name="fname" placeholder="Convide pessoas por email">
+                        <input type="submit" value="Convidar">
+                        <input type="text" id="fname" name="fname" placeholder="Remova pessoas por email">
+                        <input type="submit" value="Remover">
+                        <p>Lista de Convidados:</p>
+                    </div>
+                </div>
+                </div>
+        </div>
 
+        <br>
+        <br>
+        <br>
 
-      <br>
-      <br>
-      <br>
-      
-<div class="card">
-  <img src="/assets/img_avatar3.png" alt="Avatar" style="width:100%">
-  <div class="container">
-    <h4><b>Reunião 1</b></h4> 
-    <p>Praias Poluidas</p> 
-  </div>
-</div>
+        <h1>Criar conferência</h1>
+
+        <br>
+        <br>
+        <form method="post" action="/" id="form" class="validate">
+            <div class="form-field">
+              <label for="full-name">Full Name</label>
+              <input type="text" name="full-name" id="full-name" placeholder="Nome" required />
+            </div>
+            <div class="form-field">
+                <label for="password-input">Hora da reunião</label>
+                <input type="datetime-local" id="birthdaytime" name="birthdaytime">
+              </div>
+            <div class="form-field">
+              <label for="email-input">Descrição</label>
+              <input type="description" name="description-input" id="description-input" placeholder="" required />
+            </div>
+            <div class="form-field">
+              <label for=""></label>
+              <input type="submit" value="Submeter" />
+            </div>
+
+          </form>
 </body>
+
 </html>
 <style scoped>
-/* * {
+    /* * {
   border: 0.05px solid red;
 } */
-body {
-  max-width: 75em;
-  margin: 0 auto;
-}
-.navbar {
-  max-width: 75em;
-  position: fixed;
-  width: 100%;
-  padding: 0;
-  margin: 0px -2px 0px -2px;
-}
-.navbar-items {
-  background-color:#6fb98f;
-  display: block;
-  position: relative;
-  height: 3em;
-}
-h2 {
-  left: 1em;
-  position: relative;
-  margin-bottom: 5px;
-  display: inline-block;
-  color: #2b7873;
-}
-.streamnav {
-  position: absolute;
-  display: inline-block;
-  right: 0.5em;
-  bottom: 0;
-}
-.streamers {
-  right: 1em;
-  list-style-type: none;
-}
-.streamer {
-  color: white; 
-  font-family: "Droid Sans";
-  display: inline-block;
-  padding: 0 0.5em 0 0.5em;
-}
-h1{
-    color:#2b7873 ;
-}
-html{
-    background-color: seashell;
+    body {
+        max-width: 75em;
+        margin: 0 auto;
+    }
+
+    .navbar {
+        max-width: 75em;
+        position: fixed;
+        width: 100%;
+        padding: 0;
+        margin: 0px -2px 0px -2px;
+    }
+
+    .navbar-items {
+        background-color: #6fb98f;
+        display: block;
+        position: relative;
+        height: 3em;
+    }
+
+    h2 {
+        left: 1em;
+        position: relative;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: #2b7873;
+    }
+
+    .streamnav {
+        position: absolute;
+        display: inline-block;
+        right: 0.5em;
+        bottom: 0;
+    }
+
+    .streamers {
+        right: 1em;
+        list-style-type: none;
+    }
+
+    .streamer {
+        color: white;
+        font-family: "Droid Sans";
+        display: inline-block;
+        padding: 0 0.5em 0 0.5em;
+    }
+
+    h1 {
+        color: #2b7873;
+    }
+
+    html {
+        background-color: seashell;
+    }
+
+    /* CARDS */
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 40%;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    /* Cards responsive */
+
+
+    /* Float four columns side by side */
+
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
-/* CARDS */
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+/* caixa de criação de conferencias */
+
+
+#form {
+  max-width: 700px;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-.container {
-  padding: 2px 16px;
+.form-field {
+  display: flex;
+  margin: 0 0 1rem 0;
 }
+label, input {
+  width: 70%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+label {
+  text-align: right;
+  width: 30%;
+}
+input {
+  border: 2px solid #aaa;
+  border-radius: 2px;
+}
+
 </style>
